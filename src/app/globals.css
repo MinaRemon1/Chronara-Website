@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F5F4EB;
   --foreground: #171717;
 }
 
@@ -10,17 +10,464 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-playfair: var(--font-playfair);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #F5F4EB;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease-out;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4a267;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b08c5a;
+}
+
+/* Selection color */
+::selection {
+  background: #c4a267;
+  color: white;
+}
+
+::-moz-selection {
+  background: #c4a267;
+  color: white;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #c4a267;
+  outline-offset: 2px;
+}
+
+/* Luxury gradient backgrounds */
+.luxury-gradient {
+  background: linear-gradient(135deg, #f8f5f0 0%, #e8e1d5 100%);
+}
+
+.luxury-gradient-dark {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+/* Gold accent color utility */
+.text-gold {
+  color: #c4a267;
+}
+
+.bg-gold {
+  background-color: #c4a267;
+}
+
+.border-gold {
+  border-color: #c4a267;
+}
+
+/* Backdrop blur support for older browsers */
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-md {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .backdrop-blur-md {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+/* Video container aspect ratio utilities */
+.video-container {
+  aspect-ratio: 16/9;
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Add to your globals.css */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(180deg); 
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(196, 162, 103, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(196, 162, 103, 0.6);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+/* Smooth scrolling for the whole site */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b08c5a, #947044);
+}
+
+/* Enhanced Animations for Light Theme */
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-30px) rotate(180deg); 
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(90deg); 
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 10s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 1s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 1s ease-out;
+}
+
+/* Light theme color palette */
+:root {
+  --color-beige: #f8f5f0;
+  --color-gold: #c4a267;
+  --color-nude: #e8dccc;
+  --color-gray-light: #f5f5f5;
+}
+
+.bg-beige { background-color: var(--color-beige); }
+.bg-beige\/50 { background-color: rgba(248, 245, 240, 0.5); }
+.bg-beige\/20 { background-color: rgba(248, 245, 240, 0.2); }
+.bg-beige\/30 { background-color: rgba(248, 245, 240, 0.3); }
+
+.bg-gold { background-color: var(--color-gold); }
+.bg-gold\/5 { background-color: rgba(196, 162, 103, 0.05); }
+.bg-gold\/10 { background-color: rgba(196, 162, 103, 0.1); }
+.bg-gold\/20 { background-color: rgba(196, 162, 103, 0.2); }
+.bg-gold\/30 { background-color: rgba(196, 162, 103, 0.3); }
+
+.text-gold { color: var(--color-gold); }
+.border-gold { border-color: var(--color-gold); }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b08c5a, #947044);
+}
+
+/* Enhanced Animations for Light Theme */
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-30px) rotate(180deg); 
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(90deg); 
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 10s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Light theme color palette */
+:root {
+  --color-beige: #f8f5f0;
+  --color-beige-25: #fcfaf7;
+  --color-beige-50: #fdfcf9;
+  --color-gold: #c4a267;
+  --color-nude: #e8dccc;
+}
+
+.bg-beige { background-color: var(--color-beige); }
+.bg-beige\/25 { background-color: rgba(248, 245, 240, 0.25); }
+.bg-beige\/30 { background-color: rgba(248, 245, 240, 0.3); }
+.bg-beige\/50 { background-color: rgba(248, 245, 240, 0.5); }
+.bg-beige-25 { background-color: var(--color-beige-25); }
+.bg-beige-50 { background-color: var(--color-beige-50); }
+
+.bg-gold { background-color: var(--color-gold); }
+.bg-gold\/5 { background-color: rgba(196, 162, 103, 0.05); }
+.bg-gold\/10 { background-color: rgba(196, 162, 103, 0.1); }
+.bg-gold\/20 { background-color: rgba(196, 162, 103, 0.2); }
+.bg-gold\/30 { background-color: rgba(196, 162, 103, 0.3); }
+
+.text-gold { color: var(--color-gold); }
+.border-gold { border-color: var(--color-gold); }
+
+/* Geometric pattern background */
+.bg-geometric-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(196, 162, 103, 0.1) 2px, transparent 0),
+    radial-gradient(circle at 75% 75%, rgba(196, 162, 103, 0.1) 2px, transparent 0);
+  background-size: 50px 50px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b08c5a, #947044);
 }
