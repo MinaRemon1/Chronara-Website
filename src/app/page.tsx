@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Playfair_Display, Geist, Geist_Mono } from 'next/font/google';
 import PortfolioSection from "@/components/PortfolioSection";
+import Fields from "@/components/fields";
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -412,6 +413,9 @@ export default function Home() {
 
         {/* Portfolio Section */}
         <PortfolioSection/>
+      </div>
+      <div className="relative bg-[#F5F4EB] -mt-6 pt-30 pb-30">
+        <Fields/>
       </div>
     </div>
   );
