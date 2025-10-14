@@ -309,7 +309,7 @@ export default function Home() {
         {/* Who We Are Section */}
         <section 
           ref={aboutRef}
-          className="relative bg-white py-24 lg:py-32 overflow-hidden"
+          className="relative bg-[#F5F4EB] py-24 lg:py-32 overflow-hidden"
         >
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
