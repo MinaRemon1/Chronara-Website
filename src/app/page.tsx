@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Playfair_Display, Geist, Geist_Mono } from 'next/font/google';
+import PortfolioSection from "@/components/PortfolioSection";
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -28,8 +29,30 @@ export default function Home() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
+  const [activeProject, setActiveProject] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isInPortfolio, setIsInPortfolio] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const portfolioRef = useRef<HTMLDivElement>(null);
+  const projectContainerRef = useRef<HTMLDivElement>(null);
+  const isScrolling = useRef(false);
+  const portfolioTopRef = useRef(0);
+
+  const portfolioProjects = [
+    {
+      title: "Skyline Penthouse",
+      location: "New York, NY",
+      date: "2024",
+      images: ["/image.jpg", "/image1.jpg", "/image2.jpg"]
+    },
+    {
+      title: "Coastal Retreat",
+      location: "Malibu, CA",
+      date: "2023",
+      images: ["/image.jpg", "/image1.jpg", "/image2.jpg"]
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +63,33 @@ export default function Home() {
 
       // Navbar hide/show logic
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down & past threshold - hide nav
         setIsNavVisible(false);
       } else {
-        // Scrolling up - show nav
         setIsNavVisible(true);
+      }
+
+      // Portfolio section detection
+      if (portfolioRef.current) {
+        const portfolioTop = portfolioRef.current.offsetTop;
+        portfolioTopRef.current = portfolioTop;
+        const viewportHeight = window.innerHeight;
+        const isNowInPortfolio = currentScrollY >= portfolioTop - viewportHeight / 2;
+        
+        if (isNowInPortfolio !== isInPortfolio) {
+          setIsInPortfolio(isNowInPortfolio);
+          
+          if (isNowInPortfolio && !isScrolling.current) {
+            // Snap to first project when entering portfolio
+            isScrolling.current = true;
+            window.scrollTo({
+              top: portfolioTop,
+              behavior: 'smooth'
+            });
+            setTimeout(() => {
+              isScrolling.current = false;
+            }, 500);
+          }
+        }
       }
 
       setLastScrollY(currentScrollY);
@@ -54,7 +99,109 @@ export default function Home() {
     setIsLoaded(true);
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isInPortfolio]);
+
+  // Handle wheel events for portfolio section
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!isInPortfolio || isScrolling.current) return;
+
+      e.preventDefault();
+      isScrolling.current = true;
+
+      if (e.deltaY > 0) {
+        // Scrolling down
+        const currentProjectImages = portfolioProjects[activeProject].images.length;
+        
+        if (activeImageIndex < currentProjectImages - 1) {
+          // Move to next image in current project
+          setActiveImageIndex(prev => prev + 1);
+          setTimeout(() => {
+            isScrolling.current = false;
+          }, 300);
+        } else {
+          // Move to next project
+          if (activeProject < portfolioProjects.length - 1) {
+            setActiveProject(prev => prev + 1);
+            setActiveImageIndex(0);
+            
+            // Snap scroll to next project
+            const nextProjectTop = portfolioTopRef.current + ((activeProject + 1) * window.innerHeight);
+            window.scrollTo({
+              top: nextProjectTop,
+              behavior: 'smooth'
+            });
+            
+            setTimeout(() => {
+              isScrolling.current = false;
+            }, 600);
+          } else {
+            // Last project, allow normal scroll
+            isScrolling.current = false;
+          }
+        }
+      } else {
+        // Scrolling up
+        if (activeImageIndex > 0) {
+          // Move to previous image in current project
+          setActiveImageIndex(prev => prev - 1);
+          setTimeout(() => {
+            isScrolling.current = false;
+          }, 300);
+        } else {
+          // Move to previous project
+          if (activeProject > 0) {
+            setActiveProject(prev => prev - 1);
+            const prevProjectImages = portfolioProjects[activeProject - 1].images.length;
+            setActiveImageIndex(prevProjectImages - 1);
+            
+            // Snap scroll to previous project
+            const prevProjectTop = portfolioTopRef.current + ((activeProject - 1) * window.innerHeight);
+            window.scrollTo({
+              top: prevProjectTop,
+              behavior: 'smooth'
+            });
+            
+            setTimeout(() => {
+              isScrolling.current = false;
+            }, 600);
+          } else {
+            // First project, exit portfolio mode
+            setIsInPortfolio(false);
+            isScrolling.current = false;
+          }
+        }
+      }
+    };
+
+    if (isInPortfolio) {
+      window.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isInPortfolio, activeProject, activeImageIndex, portfolioProjects]);
+
+  // Force scroll to active project when in portfolio mode
+  useEffect(() => {
+    if (isInPortfolio && !isScrolling.current) {
+      const projectTop = portfolioTopRef.current + (activeProject * window.innerHeight);
+      const currentScroll = window.scrollY;
+      
+      // If we're not at the correct project position, snap to it
+      if (Math.abs(currentScroll - projectTop) > 50) {
+        isScrolling.current = true;
+        window.scrollTo({
+          top: projectTop,
+          behavior: 'smooth'
+        });
+        setTimeout(() => {
+          isScrolling.current = false;
+        }, 500);
+      }
+    }
+  }, [isInPortfolio, activeProject]);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -263,13 +410,8 @@ export default function Home() {
           <div className="absolute top-32 right-40 w-1 h-24 bg-gray-200 rotate-45"></div>
         </section>
 
-        {/* Add more sections here that will scroll normally */}
-        <section className="py-24 bg-gray-50">
-          <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-light text-center mb-16">More Content Sections</h2>
-            {/* Add your additional content sections here */}
-          </div>
-        </section>
+        {/* Portfolio Section */}
+        <PortfolioSection/>
       </div>
     </div>
   );
