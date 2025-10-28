@@ -2,7 +2,7 @@ import React from 'react'
 
 const Porfolio = () => {
   return (
-    <div>Porfolio</div>
+    <div>Porfolio<br/>Still in development</div>
   )
 }
 

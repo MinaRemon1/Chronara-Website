@@ -300,7 +300,7 @@ export default function Home() {
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Porfolio', 'Contact'].map((item) => (
+              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
