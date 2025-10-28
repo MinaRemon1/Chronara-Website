@@ -147,7 +147,7 @@ const ServicesPage: NextPage = () => {
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Porfolio', 'Contact'].map((item) => (
+              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -179,13 +179,13 @@ const ServicesPage: NextPage = () => {
                 </div>
                 
                 <h1 className={`${playfair.className} text-5xl md:text-6xl lg:text-7xl text-white font-light mb-6 leading-tight`}>
-                  Design
-                  <span className="italic block text-gold">Services</span>
+                  Services
+                  {/* <span className="italic block text-gold">Services</span> */}
                 </h1>
                 
-                <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
+                {/* <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
                   Comprehensive luxury design services tailored to create extraordinary spaces that reflect your vision and elevate your lifestyle.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

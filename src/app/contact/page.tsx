@@ -138,7 +138,7 @@ const ContactPage: NextPage = () => {
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Porfolio', 'Contact'].map((item) => (
+              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -174,9 +174,9 @@ const ContactPage: NextPage = () => {
                   <span className="italic block text-gold">Journey</span>
                 </h1>
                 
-                <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
+                {/* <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
                   Ready to transform your space? Let&apos;s begin the conversation about your vision and create something extraordinary together.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

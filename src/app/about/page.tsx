@@ -186,7 +186,7 @@ const AboutPage: NextPage = () => {
 
             {/* Navigation Links */}
             <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Porfolio', 'Contact'].map((item) => (
+              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -219,12 +219,12 @@ const AboutPage: NextPage = () => {
                 
                 <h1 className={`${playfair.className} text-5xl md:text-6xl lg:text-7xl text-white font-light mb-6 leading-tight`}>
                   About
-                  <span className="block text-gold">CHRONARA</span>
+                  {/* <span className="block text-gold">CHRONARA</span> */}
                 </h1>
                 
-                <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
+                {/* <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
                   Crafting timeless spaces where artistry meets architecture, and every detail tells a story of refined living.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
