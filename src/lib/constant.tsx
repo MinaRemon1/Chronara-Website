@@ -11,4 +11,8 @@ export const fields = [
       name: 'Operational',
       color: '#c4a267',
     },
+    {
+      name: 'More',
+      color: '#c4a267',
+    },
   ];
