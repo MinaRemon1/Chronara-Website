@@ -19,7 +19,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Chronara",
+  title: "Kronorum",
   description: "Crafting timeless spaces through bespoke interior design and impeccable attention to detail",
 };
 

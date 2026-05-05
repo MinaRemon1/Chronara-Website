@@ -92,22 +92,22 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c4a267;
+  background: #997243;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b08c5a;
+  background: #997243;
 }
 
 /* Selection color */
 ::selection {
-  background: #c4a267;
+  background: #997243;
   color: white;
 }
 
 ::-moz-selection {
-  background: #c4a267;
+  background: #997243;
   color: white;
 }
 
@@ -241,12 +241,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  background: #997243;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #b08c5a, #947044);
+  background: #997243;
 }
 
 /* Enhanced Animations for Light Theme */
@@ -361,12 +361,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  background: #997243;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #b08c5a, #947044);
+  background: #997243;
 }
 
 /* Enhanced Animations for Light Theme */
@@ -479,10 +479,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c4a267, #b08c5a);
+  background: #997243;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #b08c5a, #947044);
+  background: #997243;
 }

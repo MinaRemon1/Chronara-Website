@@ -102,8 +102,8 @@ const ContactPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Contact | CHRONARA Luxury Interior Design</title>
-        <meta name="description" content="Get in touch with CHRONARA to start your luxury interior design journey. Schedule a consultation for bespoke design services." />
+        <title>Contact | KRONORUM Luxury Interior Design</title>
+        <meta name="description" content="Get in touch with KRONORUM to start your luxury interior design journey. Schedule a consultation for bespoke design services." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -113,7 +113,7 @@ const ContactPage: NextPage = () => {
           <div className="absolute inset-0">
             <Image
               src="/image.jpg"
-              alt="CHRONARA Contact - Luxury Interior Design"
+              alt="KRONORUM Contact - Luxury Interior Design"
               fill
               className="object-cover opacity-60"
               priority
@@ -124,21 +124,34 @@ const ContactPage: NextPage = () => {
         <nav className={`fixed top-0 w-full z-50 bg-transparent py-5 transition-all duration-500 ease-in-out ${
           isNavVisible ? 'translate-y-0' : '-translate-y-full'
         } ${isScrolled ? 'bg-black/20' : 'bg-transparent'}`}>
-          <div className="container mx-auto px-6 flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/">
-                <Image 
-                src='/logo3.png'
-                width="200"
-                height="200"
-                alt="logo"
-                className="transition-all duration-300"
-                />
-            </Link>
+          <div className="container mx-auto px-6 relative grid grid-cols-1 md:grid-cols-3 items-center">
+            <div className="hidden md:flex items-center justify-start gap-12">
+              {['About', 'Services'].map((item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="text-white/90 hover:text-white font-light tracking-widest text-sm transition-all duration-300 hover:scale-105"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
+            {/* Logo */}
+            <div className="flex justify-center">
+              <Link href="/">
+                <Image
+                  src='/logo3.png'
+                  width="200"
+                  height="200"
+                  alt="logo"
+                  className="transition-all duration-300"
+                />
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center justify-end gap-12">
+              {['Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -150,7 +163,7 @@ const ContactPage: NextPage = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white text-2xl transition-all duration-300 hover:scale-110">
+            <button className="md:hidden absolute right-6 top-1/2 -translate-y-1/2 text-white text-2xl transition-all duration-300 hover:scale-110">
               ☰
             </button>
           </div>
@@ -220,17 +233,40 @@ const ContactPage: NextPage = () => {
                   <div className="space-y-6">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                        <span className="text-gold text-lg">✉️</span>
+                        <svg
+                          className="w-4 h-4 text-gold"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
+                          <path d="m22 8-10 6L2 8" />
+                        </svg>
                       </div>
                       <div>
                         <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Email</p>
-                        <p className={`${geist.className} text-gray-900`}>hello@chronara.com</p>
+                        <p className={`${geist.className} text-gray-900`}>hello@kronorum.com</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                        <span className="text-gold text-lg">📞</span>
+                        <svg
+                          className="w-4 h-4 text-gold"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54a2 2 0 0 1 1.72 2.03Z" />
+                        </svg>
                       </div>
                       <div>
                         <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Phone</p>
@@ -240,7 +276,19 @@ const ContactPage: NextPage = () => {
                     
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                        <span className="text-gold text-lg">📍</span>
+                        <svg
+                          className="w-4 h-4 text-gold"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M12 22s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10Z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
                       </div>
                       <div>
                         <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Studio</p>
@@ -385,7 +433,7 @@ const ContactPage: NextPage = () => {
                     src='/logo3.png'
                     width="160"
                     height="160"
-                    alt="CHRONARA Logo"
+                    alt="KRONORUM Logo"
                     className="mb-6 filter brightness-0 invert"
                   />
                   <p className={`${geist.className} text-gray-400 mb-8 leading-relaxed max-w-md`}>
@@ -456,7 +504,7 @@ const ContactPage: NextPage = () => {
                     </div>
                     <div>
                       <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest mb-1`}>Email</p>
-                      <p className={`${geist.className} text-gray-400`}>hello@chronara.com</p>
+                      <p className={`${geist.className} text-gray-400`}>hello@kronorum.com</p>
                     </div>
                     <div>
                       <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest mb-1`}>Phone</p>
@@ -469,8 +517,8 @@ const ContactPage: NextPage = () => {
               {/* Bottom Bar */}
               <div className="border-t border-gray-800 mt-12 pt-8">
                 <div className="flex flex-col md:flex-row justify-between items-center">
-                  <p className={`${geist.className} text-gray-500 text-sm mb-4 md:mb-0`}>
-                    © 2024 CHRONARA. All rights reserved.
+                    <p className={`${geist.className} text-gray-500 text-sm mb-4 md:mb-0`}>
+                    © 2024 KRONORUM. All rights reserved.
                   </p>
                   <div className="flex space-x-6">
                     <Link href="/privacy" className={`${geist.className} text-gray-500 hover:text-gold text-sm transition-colors duration-300`}>

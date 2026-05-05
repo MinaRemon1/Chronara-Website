@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Playfair_Display, Geist, Geist_Mono } from 'next/font/google';
+import { Playfair_Display, Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import PortfolioSection from "@/components/PortfolioSection";
 import Fields from "@/components/fields";
 
@@ -23,6 +23,11 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-geist-mono',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export default function Home() {
@@ -267,40 +272,52 @@ export default function Home() {
         ref={heroRef}
         className="fixed top-0 left-0 w-full h-screen z-0"
       >
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source src="/mainVid2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Background Image */}
+        <Image
+          src="/BG-01.png"
+          alt="Hero background"
+          fill
+          priority
+          quality={100}
+          sizes="100vw"
+          className="object-cover"
+        />
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/30"></div>
 
         {/* Navigation */}
-        <nav className={`fixed top-0 w-full z-50 bg-transparent py-5 transition-all duration-500 ease-in-out ${
+        <nav className={`fixed top-4 w-full z-50 bg-transparent py-5 transition-all duration-500 ease-in-out ${
           isNavVisible ? 'translate-y-0' : '-translate-y-full'
         } ${isScrolled ? 'bg-black/20' : 'bg-transparent'}`}>
-          <div className="container mx-auto px-6 flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/">
-                <Image 
-                src='/logo3.png'
-                width="200"
-                height="200"
-                alt="logo"
-                className="transition-all duration-300"
-                />
-            </Link>
+          <div className="container mx-auto px-6 relative grid grid-cols-1 md:grid-cols-3 items-center">
+            <div className="hidden md:flex items-center justify-start gap-12">
+              {['About', 'Services'].map((item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="text-white/90 hover:text-white font-light tracking-widest text-sm transition-all duration-300 hover:scale-105"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
+            {/* Logo */}
+            <div className="flex justify-center">
+              <Link href="/">
+                <Image
+                  src='/logoIcon.png'
+                  width="75"
+                  height="75"
+                  alt="logo"
+                  className="transition-all duration-300"
+                />
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center justify-end gap-12">
+              {['Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -312,7 +329,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white text-2xl transition-all duration-300 hover:scale-110">
+            <button className="md:hidden absolute right-6 top-1/2 -translate-y-1/2 text-white text-2xl transition-all duration-300 hover:scale-110">
               ☰
             </button>
           </div>
@@ -320,33 +337,32 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative h-full flex items-center justify-center">
-          <div className="relative z-10 container mx-auto px-6">
-            <div className={`max-w-4xl transform transition-all duration-1000 ${
+          <div className="relative z-10 container mx-auto px-6 flex justify-center">
+            <div className={`max-w-4xl text-center transform transition-all duration-1000 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               {/* Main Heading */}
-              <h1 className="font-playfair text-6xl md:text-8xl lg:text-9xl text-white font-light mb-8 leading-none tracking-tight">
-                Create
-                <br />
-                <span className="italic text-gold">Timeless</span>
-                <br />
-                Spaces
+              <h1 className={`${fraunces.className} text-4xl md:text-6xl lg:text-7xl text-[#CECCCC] font-light mb-8 leading-tight tracking-tight whitespace-nowrap`}>
+                Create <span className="italic">Timeless</span> Spaces
               </h1>
 
               {/* Subtitle */}
-              <p className="text-white/80 text-xl md:text-2xl font-light mb-12 max-w-2xl leading-relaxed tracking-wide">
+              <p
+                className="text-[#CECCCC] text-xl md:text-2xl font-light mb-12 max-w-2xl mx-auto leading-relaxed tracking-wide"
+                style={{ fontFamily: '"Aktiv Grotesk Corp", var(--font-geist-sans), sans-serif' }}
+              >
                 Crafting extraordinary interiors that tell your unique story through 
                 bespoke design and impeccable attention to detail.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6">
-                <button className="group relative bg-white text-black px-12 py-4 font-light tracking-widest text-sm uppercase transition-all duration-500 hover:bg-transparent hover:text-white border border-white overflow-hidden">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <button className="group relative bg-[#997243] text-white px-12 py-4 font-light tracking-widest text-sm uppercase transition-all duration-500 hover:bg-transparent hover:text-[#997243] border border-[#997243] overflow-hidden">
                   <span className="relative z-10">Begin Your Journey</span>
-                  <div className="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                  <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                 </button>
                 
-                <button className="group text-white px-12 py-4 font-light tracking-widest text-sm uppercase border border-white/50 transition-all duration-500 hover:border-white hover:bg-white/10">
+                <button className="group text-[#997243] px-12 py-4 font-light tracking-widest text-sm uppercase border border-[#997243] transition-all duration-500 hover:bg-[#997243] hover:text-white">
                   View Our Portfolio
                 </button>
               </div>
@@ -367,7 +383,7 @@ export default function Home() {
         {/* Who We Are Section */}
         <section 
           ref={aboutRef}
-          className="relative bg-[#F5F4EB] py-24 lg:py-32 overflow-hidden"
+          className="relative bg-[#CECCCC] py-24 lg:py-32 overflow-hidden"
         >
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -421,7 +437,7 @@ export default function Home() {
                 {/* Description */}
                 <div className="space-y-6 mb-12">
                   <p className={`${geist.className} text-lg text-gray-600 leading-relaxed`}>
-                    CHRONARA stands at the intersection of artistry and architecture, where every space 
+                    KRONORUM stands at the intersection of artistry and architecture, where every space 
                     becomes a narrative of refined living. For over a decade, we have transformed 
                     residences into timeless sanctuaries that reflect the unique essence of their inhabitants.
                   </p>
@@ -473,7 +489,7 @@ export default function Home() {
         <PortfolioSection/>
 
         {/* Fields Section */}
-        <div className="relative bg-[#F5F4EB] -mt-6 pt-30 pb-30">
+        <div className="relative bg-[#CECCCC] -mt-6 pt-30 pb-30">
           <div className="flex items-center mb-12 ml-32">
                   <div className="w-16 h-px bg-gray-300 mr-4"></div>
                   <span className={`${geistMono.className} text-sm tracking-widest text-gray-500 uppercase`}>
@@ -484,7 +500,7 @@ export default function Home() {
         </div>
 
         {/* Contact Form Section */}
-        <section ref={contactRef} className="relative bg-[#F5F4EB] py-20 overflow-hidden">
+        <section ref={contactRef} className="relative bg-[#CECCCC] py-20 overflow-hidden">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
               
@@ -512,17 +528,40 @@ export default function Home() {
                 <div className="space-y-6">
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-gold text-lg">✉️</span>
+                      <svg
+                        className="w-4 h-4 text-gold"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
+                        <path d="m22 8-10 6L2 8" />
+                      </svg>
                     </div>
                     <div>
                       <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Email</p>
-                      <p className={`${geist.className} text-gray-900`}>hello@chronara.com</p>
+                      <p className={`${geist.className} text-gray-900`}>hello@kronorum.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-gold text-lg">📞</span>
+                      <svg
+                        className="w-4 h-4 text-gold"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54a2 2 0 0 1 1.72 2.03Z" />
+                      </svg>
                     </div>
                     <div>
                       <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Phone</p>
@@ -532,7 +571,19 @@ export default function Home() {
                   
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-gold text-lg">📍</span>
+                      <svg
+                        className="w-4 h-4 text-gold"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 22s-7-4.35-7-10a7 7 0 1 1 14 0c0 5.65-7 10-7 10Z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
                     </div>
                     <div>
                       <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest`}>Studio</p>
@@ -677,7 +728,7 @@ export default function Home() {
                   src='/logo3.png'
                   width="160"
                   height="160"
-                  alt="CHRONARA Logo"
+                  alt="KRONORUM Logo"
                   className="mb-6 filter brightness-0 invert"
                 />
                 <p className={`${geist.className} text-gray-400 mb-8 leading-relaxed max-w-md`}>
@@ -748,7 +799,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest mb-1`}>Email</p>
-                    <p className={`${geist.className} text-gray-400`}>hello@chronara.com</p>
+                    <p className={`${geist.className} text-gray-400`}>hello@kronorum.com</p>
                   </div>
                   <div>
                     <p className={`${geistMono.className} text-xs text-gray-500 uppercase tracking-widest mb-1`}>Phone</p>
@@ -762,7 +813,7 @@ export default function Home() {
             <div className="border-t border-gray-800 mt-12 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <p className={`${geist.className} text-gray-500 text-sm mb-4 md:mb-0`}>
-                  © 2024 CHRONARA. All rights reserved.
+                  © 2024 KRONORUM. All rights reserved.
                 </p>
                 <div className="flex space-x-6">
                   <Link href="/privacy" className={`${geist.className} text-gray-500 hover:text-gold text-sm transition-colors duration-300`}>

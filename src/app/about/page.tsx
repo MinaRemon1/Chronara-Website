@@ -76,7 +76,7 @@ const AboutPage: NextPage = () => {
       name: "Elena Rodriguez",
       role: "Founder & Creative Director",
       image: "/image.jpg",
-      description: "With over 15 years in luxury design, Elena's vision shapes every CHRONARA creation."
+      description: "With over 15 years in luxury design, Elena's vision shapes every KRONORUM creation."
     },
     {
       name: "Marcus Thorne",
@@ -149,8 +149,8 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>About CHRONARA | Luxury Interior Design</title>
-        <meta name="description" content="Discover the story behind CHRONARA - crafting timeless elegance through bespoke interior design for over a decade." />
+        <title>About KRONORUM | Luxury Interior Design</title>
+        <meta name="description" content="Discover the story behind KRONORUM - crafting timeless elegance through bespoke interior design for over a decade." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -158,13 +158,13 @@ const AboutPage: NextPage = () => {
         {/* Fixed Hero Section */}
         <div className="fixed top-0 left-0 w-full h-screen z-0">
           <div className="absolute inset-0">
-            <Image
-              src="/image.jpg"
-              alt="CHRONARA Luxury Interior Design"
-              fill
-              className="object-cover opacity-60"
-              priority
-            />
+                  <Image
+                    src="/image.jpg"
+                    alt="KRONORUM Luxury Interior Design"
+                    fill
+                    className="object-cover opacity-60"
+                    priority
+                />
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
           </div>
 
@@ -172,21 +172,34 @@ const AboutPage: NextPage = () => {
         <nav className={`fixed top-0 w-full z-50 bg-transparent py-5 transition-all duration-500 ease-in-out ${
           isNavVisible ? 'translate-y-0' : '-translate-y-full'
         } ${isScrolled ? 'bg-black/20' : 'bg-transparent'}`}>
-          <div className="container mx-auto px-6 flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/">
-                <Image 
-                src='/logo3.png'
-                width="200"
-                height="200"
-                alt="logo"
-                className="transition-all duration-300"
-                />
-            </Link>
+          <div className="container mx-auto px-6 relative grid grid-cols-1 md:grid-cols-3 items-center">
+            <div className="hidden md:flex items-center justify-start gap-12">
+              {['About', 'Services'].map((item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="text-white/90 hover:text-white font-light tracking-widest text-sm transition-all duration-300 hover:scale-105"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
+            {/* Logo */}
+            <div className="flex justify-center">
+              <Link href="/">
+                <Image
+                  src='/logo3.png'
+                  width="200"
+                  height="200"
+                  alt="logo"
+                  className="transition-all duration-300"
+                />
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center justify-end gap-12">
+              {['Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -198,7 +211,7 @@ const AboutPage: NextPage = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white text-2xl transition-all duration-300 hover:scale-110">
+            <button className="md:hidden absolute right-6 top-1/2 -translate-y-1/2 text-white text-2xl transition-all duration-300 hover:scale-110">
               ☰
             </button>
           </div>
@@ -219,7 +232,7 @@ const AboutPage: NextPage = () => {
                 
                 <h1 className={`${playfair.className} text-5xl md:text-6xl lg:text-7xl text-white font-light mb-6 leading-tight`}>
                   About
-                  {/* <span className="block text-gold">CHRONARA</span> */}
+                  {/* <span className="block text-gold">KRONORUM</span> */}
                 </h1>
                 
                 {/* <p className={`${geist.className} text-lg md:text-xl text-white/80 max-w-xl leading-relaxed font-light`}>
@@ -250,7 +263,7 @@ const AboutPage: NextPage = () => {
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
                       src="/image1.jpg"
-                      alt="Luxury interior design by CHRONARA"
+                      alt="Luxury interior design by KRONORUM"
                       fill
                       className="object-cover transition-all duration-700 hover:scale-105"
                     />
@@ -303,7 +316,7 @@ const AboutPage: NextPage = () => {
                   {/* Description */}
                   <div className="space-y-6 mb-12">
                     <p className={`${geist.className} text-lg text-gray-600 leading-relaxed`}>
-                      CHRONARA stands at the intersection of artistry and architecture, where every space 
+                      KRONORUM stands at the intersection of artistry and architecture, where every space 
                       becomes a narrative of refined living. For over a decade, we have transformed 
                       residences into timeless sanctuaries that reflect the unique essence of their inhabitants.
                     </p>
@@ -315,7 +328,7 @@ const AboutPage: NextPage = () => {
                     </p>
 
                     <p className={`${geist.className} text-lg text-gray-600 leading-relaxed`}>
-                      Founded on the principles of excellence, innovation, and timeless beauty, CHRONARA 
+                      Founded on the principles of excellence, innovation, and timeless beauty, KRONORUM 
                       has become synonymous with luxury interior design that transcends trends and 
                       creates lasting value for our discerning clients.
                     </p>
@@ -400,9 +413,9 @@ const AboutPage: NextPage = () => {
                 {/* Philosophy Image */}
                 <div className="relative">
                   <div className="relative aspect-[3/4] overflow-hidden">
-                    <Image
+                      <Image
                       src="/image.jpg"
-                      alt="CHRONARA Design Philosophy"
+                      alt="KRONORUM Design Philosophy"
                       fill
                       className="object-cover transition-all duration-700 hover:scale-105"
                     />
@@ -517,7 +530,7 @@ const AboutPage: NextPage = () => {
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
                       src="/image1.jpg"
-                      alt="CHRONARA Design Process"
+                      alt="KRONORUM Design Process"
                       fill
                       className="object-cover"
                     />

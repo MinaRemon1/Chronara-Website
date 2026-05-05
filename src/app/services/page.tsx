@@ -110,7 +110,7 @@ const ServicesPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Services | CHRONARA Luxury Interior Design</title>
+        <title>Services | KRONORUM Luxury Interior Design</title>
         <meta name="description" content="Discover our comprehensive luxury interior design services - from full-service design to custom furniture and architectural planning." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -121,7 +121,7 @@ const ServicesPage: NextPage = () => {
           <div className="absolute inset-0">
             <Image
               src="/image.jpg"
-              alt="CHRONARA Luxury Interior Design Services"
+              alt="KRONORUM Luxury Interior Design Services"
               fill
               className="object-cover opacity-60"
               priority
@@ -133,21 +133,34 @@ const ServicesPage: NextPage = () => {
         <nav className={`fixed top-0 w-full z-50 bg-transparent py-5 transition-all duration-500 ease-in-out ${
           isNavVisible ? 'translate-y-0' : '-translate-y-full'
         } ${isScrolled ? 'bg-black/20' : 'bg-transparent'}`}>
-          <div className="container mx-auto px-6 flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/">
-                <Image 
-                src='/logo3.png'
-                width="200"
-                height="200"
-                alt="logo"
-                className="transition-all duration-300"
-                />
-            </Link>
+          <div className="container mx-auto px-6 relative grid grid-cols-1 md:grid-cols-3 items-center">
+            <div className="hidden md:flex items-center justify-start gap-12">
+              {['About', 'Services'].map((item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="text-white/90 hover:text-white font-light tracking-widest text-sm transition-all duration-300 hover:scale-105"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
 
-            {/* Navigation Links */}
-            <div className="hidden md:flex space-x-12">
-              {['About', 'Services', 'Portfolio', 'Contact'].map((item) => (
+            {/* Logo */}
+            <div className="flex justify-center">
+              <Link href="/">
+                <Image
+                  src='/logo3.png'
+                  width="200"
+                  height="200"
+                  alt="logo"
+                  className="transition-all duration-300"
+                />
+              </Link>
+            </div>
+
+            <div className="hidden md:flex items-center justify-end gap-12">
+              {['Portfolio', 'Contact'].map((item) => (
                 <Link
                   key={item}
                   href={`/${item.toLowerCase()}`}
@@ -159,7 +172,7 @@ const ServicesPage: NextPage = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white text-2xl transition-all duration-300 hover:scale-110">
+            <button className="md:hidden absolute right-6 top-1/2 -translate-y-1/2 text-white text-2xl transition-all duration-300 hover:scale-110">
               ☰
             </button>
           </div>
@@ -222,7 +235,7 @@ const ServicesPage: NextPage = () => {
 
                   <div className="space-y-6 mb-8">
                     <p className={`${geist.className} text-lg text-gray-600 leading-relaxed`}>
-                      At CHRONARA, we believe that exceptional design is not just about creating beautiful spaces, 
+                      At KRONORUM, we believe that exceptional design is not just about creating beautiful spaces, 
                       but about crafting environments that enhance your quality of life and reflect your unique story.
                     </p>
                     
@@ -257,7 +270,7 @@ const ServicesPage: NextPage = () => {
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
                       src="/image2.jpg"
-                      alt="CHRONARA Design Process"
+                      alt="KRONORUM Design Process"
                       fill
                       className="object-cover transition-all duration-700 hover:scale-105"
                     />
@@ -365,7 +378,7 @@ const ServicesPage: NextPage = () => {
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <Image
                       src="/image.jpg"
-                      alt="CHRONARA Design Process"
+                      alt="KRONORUM Design Process"
                       fill
                       className="object-cover"
                     />
